@@ -2,16 +2,19 @@ package com.example.toandm.listview_basic.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Movie;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.toandm.listview_basic.R;
+import com.example.toandm.listview_basic.impl.OnItemCheckedListener;
 import com.example.toandm.listview_basic.model.MovieItem;
 
 import java.util.ArrayList;
@@ -22,6 +25,12 @@ import java.util.ArrayList;
  */
 
 public class MyAdapter extends BaseAdapter {
+
+    private OnItemCheckedListener onItemCheckedListener;
+
+    public void setOnItemCheckedListener(OnItemCheckedListener onItemCheckedListener) {
+        this.onItemCheckedListener = onItemCheckedListener;
+    }
 
     private Context context;
     private ArrayList<MovieItem> movies;
@@ -47,7 +56,7 @@ public class MyAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder holder;
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
@@ -59,20 +68,50 @@ public class MyAdapter extends BaseAdapter {
             holder.tvNameMovie = convertView.findViewById(R.id.tvName);
             holder.tvReleasedYear = convertView.findViewById(R.id.tvYear);
             holder.tvDirectedBy = convertView.findViewById(R.id.tvDirectBy);
+            holder.checkBox = convertView.findViewById(R.id.cbIsWatchLater);
+            holder.itemLayout = convertView.findViewById(R.id.itemLayout);
+
             convertView.setTag(holder);
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        MovieItem movieItem = getItem(position);
+        final MovieItem movieItem = getItem(position);
 
         holder.tvID.setText(movieItem.getId());
         holder.tvNameMovie.setText(movieItem.getNameMovie());
         holder.tvReleasedYear.setText(movieItem.getReleasedYear()+"");
         holder.tvDirectedBy.setText(movieItem.getDirectedBy());
+        holder.checkBox.setChecked(movieItem.isWatchLater());
+//        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                onItemCheckedListener.onChecked(movieItem,position);
+//            }
+//        });
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemCheckedListener.onChecked(movieItem,position);
+            }
+        });
+
+       changeBackground(holder);
 
         return convertView;
+    }
+
+    private void changeBackground(ViewHolder holder) {
+        boolean flag = holder.checkBox.isChecked();
+        Log.d("FLAG",flag+"");
+        if (flag){
+            holder.itemLayout.setBackgroundColor(Color.BLUE);
+        }else {
+            holder.itemLayout.setBackgroundColor(Color.WHITE);
+        }
+        //notifyDataSetChanged();
+
     }
 
     static class ViewHolder {
@@ -80,6 +119,8 @@ public class MyAdapter extends BaseAdapter {
         private TextView tvNameMovie;
         private TextView tvReleasedYear;
         private TextView tvDirectedBy;
+        private CheckBox checkBox;
+        private LinearLayout itemLayout;
 
     }
 

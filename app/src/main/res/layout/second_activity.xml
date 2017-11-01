@@ -2,5 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="This is RecyleView"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:background="@color/colorAccent"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/btshop"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorAccent"
+        android:text="SHOP"
+        android:textColor="#ffffff"
+        android:textSize="20dp"/>
+
 
 </LinearLayout>

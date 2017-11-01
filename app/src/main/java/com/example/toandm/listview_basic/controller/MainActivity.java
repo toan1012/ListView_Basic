@@ -1,10 +1,16 @@
-package com.example.toandm.listview_basic;
+package com.example.toandm.listview_basic.controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.toandm.listview_basic.R;
 import com.example.toandm.listview_basic.adapter.MyAdapter;
+import com.example.toandm.listview_basic.impl.OnItemCheckedListener;
 import com.example.toandm.listview_basic.model.MovieItem;
 
 import java.util.ArrayList;
@@ -12,10 +18,34 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ListView listViewMovie;
+    Button btAdd;
+    private OnItemCheckedListener onItemCheckedListener = new OnItemCheckedListener() {
+        @Override
+        public void onChecked(MovieItem movieItem, int position) {
+            if(movieItem.isWatchLater()){
+                movieItem.setWatchLater(false);
+            }else {
+                movieItem.setWatchLater(true);
+            }
+            adapter.notifyDataSetChanged();
+            Log.e("MainActivity", "movieItem = " + movieItem.getId() + "---- position = " + position);
+        }
+    };
+    private MyAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btAdd = (Button) findViewById(R.id.btAdd1);
+        btAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+        });
         listViewMovie = (ListView) findViewById(R.id.listMovie);
         ArrayList<MovieItem> arrMovie = new ArrayList<MovieItem>();
 
@@ -35,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
         arrMovie.add(new MovieItem("25","Tup leu cua bac Tom",true,2009,"Tan Son Nhat"));
 
 
-        MyAdapter adapter = new MyAdapter(this,arrMovie);
+        adapter = new MyAdapter(this,arrMovie);
         listViewMovie.setAdapter(adapter);
+        adapter.setOnItemCheckedListener(onItemCheckedListener);
 
     }
 }
