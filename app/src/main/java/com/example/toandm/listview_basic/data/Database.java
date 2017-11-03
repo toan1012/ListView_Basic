@@ -18,5 +18,6 @@ public class Database {
 
     public static final String OLDPRICE[] = {"4.99$","5,7$","6.5$","2.7$","7.5$","3.4$"};
     public static final String NEWPRICE[] = {"4.59$","5,2$","6.0$","2.5$","7.2$","3.1$"};
+    public static final String NAMEFILM[] = {"Chien tranh Trieu Tien","Buon","Vui","Chao cuoc song"};
 
 }

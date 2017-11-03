@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.example.toandm.listview_basic.R;
 import com.example.toandm.listview_basic.adapter.MyAdapter;
+import com.example.toandm.listview_basic.data.Database;
 import com.example.toandm.listview_basic.impl.OnItemCheckedListener;
 import com.example.toandm.listview_basic.model.MovieItem;
 
@@ -18,7 +19,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ListView listViewMovie;
+    Button btMore;
     Button btAdd;
+    ArrayList<MovieItem> arrMovie;
+
+    public ArrayList<MovieItem> getArrMovie() {
+        return arrMovie;
+    }
+
     private OnItemCheckedListener onItemCheckedListener = new OnItemCheckedListener() {
         @Override
         public void onChecked(MovieItem movieItem, int position) {
@@ -33,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
     };
     private MyAdapter adapter;
 
+    public void setArrMovie(ArrayList<MovieItem> arrMovie) {
+        this.arrMovie = fakeData();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +58,36 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
         listViewMovie = (ListView) findViewById(R.id.listMovie);
-        ArrayList<MovieItem> arrMovie = new ArrayList<MovieItem>();
+
+
+        btMore = (Button) findViewById(R.id.btAddMore);
+        btMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i=0; i<50; i++){
+                    arrMovie.add(new MovieItem("12","Chien tranh giua cac vi sao",true,2010,"Antonio Valencia"));
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+
+        adapter = new MyAdapter(this, new ArrayList<MovieItem>());
+        listViewMovie.setAdapter(adapter);
+        adapter.setOnItemCheckedListener(onItemCheckedListener);
+
+        fakeData();
+        adapter.notifyDataSetChanged();
+
+
+
+    }
+
+    private ArrayList<MovieItem> fakeData() {
+        arrMovie = new ArrayList<MovieItem>();
 
         arrMovie.add(new MovieItem("12","Chien tranh giua cac vi sao",true,2010,"Antonio Valencia"));
         arrMovie.add(new MovieItem("13","Tom and jerry",false,1990,"John Howards"));
@@ -64,10 +104,6 @@ public class MainActivity extends AppCompatActivity {
         arrMovie.add(new MovieItem("24","Dam cuoi chuot",true,2010,"Ly Bang"));
         arrMovie.add(new MovieItem("25","Tup leu cua bac Tom",true,2009,"Tan Son Nhat"));
 
-
-        adapter = new MyAdapter(this,arrMovie);
-        listViewMovie.setAdapter(adapter);
-        adapter.setOnItemCheckedListener(onItemCheckedListener);
-
+        return arrMovie;
     }
 }

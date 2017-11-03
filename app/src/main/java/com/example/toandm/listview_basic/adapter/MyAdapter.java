@@ -35,10 +35,17 @@ public class MyAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<MovieItem> movies;
 
+    public void setMovies(ArrayList<MovieItem> movies) {
+        this.movies = movies;
+    }
+
+
     public MyAdapter(Context context, ArrayList<MovieItem> movies) {
         this.context = context;
         this.movies = movies;
     }
+
+
 
     @Override
     public int getCount() {
