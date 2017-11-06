@@ -12,7 +12,7 @@ import com.example.toandm.listview_basic.R;
  * Created by toandm on 11/6/17.
  */
 
-public class SearchFragment extends Fragment{
+public class SearchFragment extends android.support.v4.app.Fragment{
     public static SearchFragment newInstance() {
         SearchFragment fragment = new SearchFragment();
         return fragment;

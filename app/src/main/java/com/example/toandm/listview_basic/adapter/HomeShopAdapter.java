@@ -3,17 +3,13 @@ package com.example.toandm.listview_basic.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.toandm.listview_basic.R;
-import com.example.toandm.listview_basic.impl.OnItemCheckedListener;
 import com.example.toandm.listview_basic.impl.OnItemClickedListener;
 import com.example.toandm.listview_basic.model.ShopItem;
 
@@ -23,25 +19,29 @@ import java.util.List;
  * Created by toandm on 11/1/17.
  */
 
-public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ShopViewHolder>{
+public class HomeShopAdapter extends RecyclerView.Adapter<HomeShopAdapter.ShopViewHolder>{
     private Context context;
     private List<ShopItem> listShopItem;
-    private AdapterShop.ShopViewHolder holder;
+    private HomeShopAdapter.ShopViewHolder holder;
     private OnItemClickedListener onItemClickedListener;
 
     public void setOnItemClickedListener(OnItemClickedListener onItemClickedListener) {
         this.onItemClickedListener = onItemClickedListener;
     }
 
-    public AdapterShop(Context context, List<ShopItem> listShopItem){
+    public HomeShopAdapter(Context context, List<ShopItem> listShopItem){
         this.context = context;
         this.listShopItem = listShopItem;
     }
 
+    public HomeShopAdapter(List<ShopItem> listShopItem){
+        this.listShopItem = listShopItem;
+    }
+
     @Override
-    public AdapterShop.ShopViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HomeShopAdapter.ShopViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shop,parent,false);
-        return new AdapterShop.ShopViewHolder(view);
+        return new HomeShopAdapter.ShopViewHolder(view);
     }
 
     @Override

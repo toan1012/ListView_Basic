@@ -1,10 +1,12 @@
 package com.example.toandm.listview_basic.model;
 
+import java.io.Serializable;
+
 /**
  * Created by toandm on 11/3/17.
  */
 
-public class ShopItem {
+public class ShopItem implements Serializable {
     private String oldPrice, newPrice, nameProduct;
     private int img;
 

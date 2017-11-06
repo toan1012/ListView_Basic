@@ -12,7 +12,7 @@ import com.example.toandm.listview_basic.R;
  * Created by toandm on 11/6/17.
  */
 
-public class SettingFragment extends Fragment{
+public class SettingFragment extends android.support.v4.app.Fragment{
     public static SettingFragment newInstance() {
         SettingFragment fragment = new SettingFragment();
         return fragment;

@@ -39,7 +39,7 @@ public class SecondActivity extends Activity{
         btNextShop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(SecondActivity.this, ShopActivity.class);
+                Intent intent1 = new Intent(SecondActivity.this, ShopFragmentActivity.class);
                 startActivity(intent1);
             }
         });

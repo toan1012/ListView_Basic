@@ -12,7 +12,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.toandm.listview_basic.R;
-import com.example.toandm.listview_basic.adapter.AdapterShop;
+import com.example.toandm.listview_basic.adapter.HomeShopAdapter;
 import com.example.toandm.listview_basic.data.Database;
 import com.example.toandm.listview_basic.impl.OnItemClickedListener;
 import com.example.toandm.listview_basic.model.ShopItem;
@@ -27,7 +27,7 @@ import java.util.List;
 public class ShopActivity extends Activity {
     RecyclerView recyclerViewShop;
     GridLayoutManager layoutManager;
-    private AdapterShop adapterShop;
+    private HomeShopAdapter homeShopAdapter;
 
     private OnItemClickedListener onItemClickedListener = new OnItemClickedListener() {
         @Override
@@ -35,7 +35,7 @@ public class ShopActivity extends Activity {
 //            Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
 //            intent.putExtra("name",item.getNameProduct());
 //            startActivity(intent);
-            Toast.makeText(getApplicationContext(), item.getNameProduct(),Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), item.getNameProduct(),Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -55,14 +55,14 @@ public class ShopActivity extends Activity {
         }
         Log.d("VALUES", listShop.get(998).getNameProduct() + "");
 
-        adapterShop = new AdapterShop(this, listShop);
+        homeShopAdapter = new HomeShopAdapter(this, listShop);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewShop.setLayoutManager(mLayoutManager);
         recyclerViewShop.setItemAnimator(new DefaultItemAnimator());
         layoutManager= new GridLayoutManager(this,2);
         recyclerViewShop.hasFixedSize();
         recyclerViewShop.setLayoutManager(layoutManager);
-        recyclerViewShop.setAdapter(adapterShop);
-        adapterShop.setOnItemClickedListener(onItemClickedListener);
+        recyclerViewShop.setAdapter(homeShopAdapter);
+        homeShopAdapter.setOnItemClickedListener(onItemClickedListener);
     }
 }

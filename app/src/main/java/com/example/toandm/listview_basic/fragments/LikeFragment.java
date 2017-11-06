@@ -12,7 +12,7 @@ import com.example.toandm.listview_basic.R;
  * Created by toandm on 11/6/17.
  */
 
-public class LikeFragment extends Fragment {
+public class LikeFragment extends android.support.v4.app.Fragment {
     public static LikeFragment newInstance() {
         LikeFragment fragment = new LikeFragment();
         return fragment;
@@ -28,4 +28,6 @@ public class LikeFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_like, container, false);
     }
+
+
 }
