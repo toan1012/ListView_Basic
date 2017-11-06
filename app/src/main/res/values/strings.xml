@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ListView_Basic</string>
+    <string name="item_1">Home</string>
+    <string name="item_2">Like</string>
+    <string name="item_3">Fillter</string>
+    <string name="item_4">Filter</string>
+    <string name="item_5">Setting</string>
 </resources>

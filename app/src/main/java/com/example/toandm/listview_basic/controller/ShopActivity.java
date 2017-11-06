@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.toandm.listview_basic.R;
 import com.example.toandm.listview_basic.adapter.AdapterShop;
@@ -31,9 +32,10 @@ public class ShopActivity extends Activity {
     private OnItemClickedListener onItemClickedListener = new OnItemClickedListener() {
         @Override
         public void onClicked(ShopItem item, int position) {
-            Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-            intent.putExtra("name",item.getNameProduct());
-            startActivity(intent);
+//            Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+//            intent.putExtra("name",item.getNameProduct());
+//            startActivity(intent);
+            Toast.makeText(getApplicationContext(), item.getNameProduct(),Toast.LENGTH_SHORT).show();
         }
     };
 

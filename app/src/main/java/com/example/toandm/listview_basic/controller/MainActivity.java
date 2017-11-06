@@ -21,11 +21,6 @@ public class MainActivity extends AppCompatActivity {
     ListView listViewMovie;
     Button btMore;
     Button btAdd;
-    ArrayList<MovieItem> arrMovie;
-
-    public ArrayList<MovieItem> getArrMovie() {
-        return arrMovie;
-    }
 
     private OnItemCheckedListener onItemCheckedListener = new OnItemCheckedListener() {
         @Override
@@ -41,9 +36,8 @@ public class MainActivity extends AppCompatActivity {
     };
     private MyAdapter adapter;
 
-    public void setArrMovie(ArrayList<MovieItem> arrMovie) {
-        this.arrMovie = fakeData();
-    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +61,12 @@ public class MainActivity extends AppCompatActivity {
         btMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<MovieItem> listMore = new ArrayList<MovieItem>();
                 for (int i=0; i<50; i++){
-                    arrMovie.add(new MovieItem("12","Chien tranh giua cac vi sao",true,2010,"Antonio Valencia"));
-                    adapter.notifyDataSetChanged();
+                    MovieItem movieItem = new MovieItem("12","Chien tranh giua cac vi sao",true,2010,"Antonio Valencia");
+                    listMore.add(movieItem);
                 }
+                adapter.updateData(listMore);
             }
         });
 
@@ -79,15 +75,11 @@ public class MainActivity extends AppCompatActivity {
         listViewMovie.setAdapter(adapter);
         adapter.setOnItemCheckedListener(onItemCheckedListener);
 
-        fakeData();
-        adapter.notifyDataSetChanged();
-
-
-
+        adapter.addAll(fakeData());
     }
 
     private ArrayList<MovieItem> fakeData() {
-        arrMovie = new ArrayList<MovieItem>();
+        ArrayList<MovieItem> arrMovie = new ArrayList<MovieItem>();
 
         arrMovie.add(new MovieItem("12","Chien tranh giua cac vi sao",true,2010,"Antonio Valencia"));
         arrMovie.add(new MovieItem("13","Tom and jerry",false,1990,"John Howards"));

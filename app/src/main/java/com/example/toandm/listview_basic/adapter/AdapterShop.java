@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,7 +51,8 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ShopViewHolder
         holder.newPrice.setText(shopItem.getNewPrice());
         holder.nameProduct.setText(shopItem.getNameProduct());
         holder.ibProduct.setImageResource(shopItem.getImg());
-       holder.layoutItem.setOnClickListener(new View.OnClickListener() {
+
+       holder.cart.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                onItemClickedListener.onClicked(shopItem, position);
@@ -65,7 +67,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ShopViewHolder
 
     public class ShopViewHolder extends RecyclerView.ViewHolder{
         private TextView oldPrice, newPrice, nameProduct;
-        private ImageView ibProduct;
+        private ImageView ibProduct,cart;
         private LinearLayout layoutItem;
 
 
@@ -76,6 +78,7 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.ShopViewHolder
             ibProduct = view.findViewById(R.id.imProduct);
             nameProduct = view.findViewById(R.id.nameProduct);
             layoutItem = view.findViewById(R.id.itemLayout);
+            cart = view.findViewById(R.id.cart);
         }
     }
 }

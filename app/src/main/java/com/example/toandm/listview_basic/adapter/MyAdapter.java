@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.toandm.listview_basic.R;
+import com.example.toandm.listview_basic.controller.MainActivity;
 import com.example.toandm.listview_basic.impl.OnItemCheckedListener;
 import com.example.toandm.listview_basic.model.MovieItem;
 
@@ -35,17 +36,11 @@ public class MyAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<MovieItem> movies;
 
-    public void setMovies(ArrayList<MovieItem> movies) {
-        this.movies = movies;
-    }
-
 
     public MyAdapter(Context context, ArrayList<MovieItem> movies) {
         this.context = context;
         this.movies = movies;
     }
-
-
 
     @Override
     public int getCount() {
@@ -119,6 +114,21 @@ public class MyAdapter extends BaseAdapter {
         }
         //notifyDataSetChanged();
 
+    }
+
+    public void addAll(ArrayList<MovieItem> movieItems) {
+        this.movies = movieItems;
+        this.notifyDataSetChanged();
+    }
+
+    public void updateData(ArrayList<MovieItem> movies) {
+        this.movies.addAll(movies);
+        this.notifyDataSetChanged();
+
+    }
+
+    public void addData(MovieItem movieItem) {
+        this.movies.add(movieItem);
     }
 
     static class ViewHolder {
