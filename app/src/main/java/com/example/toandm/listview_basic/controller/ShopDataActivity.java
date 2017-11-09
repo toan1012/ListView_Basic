@@ -16,7 +16,9 @@ import com.example.toandm.listview_basic.fragments.HomeFragment;
 import com.example.toandm.listview_basic.fragments.LikeFragment;
 import com.example.toandm.listview_basic.model.ShopItem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by toandm on 11/6/17.
@@ -24,7 +26,8 @@ import java.util.ArrayList;
 
 public class ShopDataActivity extends AppCompatActivity implements HomeFragment.OnManagerData{
 
-    ArrayList<ShopItem> listLike = new ArrayList<ShopItem>();
+    List<ShopItem> likeList = new ArrayList<ShopItem>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,9 +76,10 @@ public class ShopDataActivity extends AppCompatActivity implements HomeFragment.
 
     @Override
     public void sendData(ShopItem item) {
+        likeList.add(item);
         LikeFragment likeFragment = new LikeFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(Database.KEYNAME,item);
+        bundle.putSerializable(Database.KEYNAME, (Serializable) likeList);
         likeFragment.setArguments(bundle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         // Replace whatever is in the fragment_container view with this fragment,

@@ -28,10 +28,6 @@ public class LikeFragment extends android.support.v4.app.Fragment {
     List<ShopItem> listLikeItem;
     private GridLayoutManager layoutManager;
     RecyclerView recyclerView;
-    LikeShopAdapter likeAdapter;
-
-
-    private List<ShopItem> likeList = new ArrayList<ShopItem>();
 
     public static LikeFragment newInstance() {
         LikeFragment fragment = new LikeFragment();
@@ -51,10 +47,8 @@ public class LikeFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_like,null);
-        ShopItem likeItem = (ShopItem) getArguments().getSerializable(Database.KEYNAME);
-        likeAdapter.updateListLike(likeItem);
-
+//        View view = inflater.inflate(R.layout.fragment_like,null);
+        listLikeItem = (List<ShopItem>) getArguments().getSerializable(Database.KEYNAME);
         return inflater.inflate(R.layout.fragment_like, container, false);
     }
 
@@ -62,12 +56,9 @@ public class LikeFragment extends android.support.v4.app.Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        txtData = view.findViewById(R.id.txtData);
-//        txtData.setText(nameProduct.getNameProduct()+" "+nameProduct.getNewPrice()
-//                +" "+nameProduct.getOldPrice());
+        txtData = view.findViewById(R.id.txtData);
+        txtData.setText(listLikeItem.get(0).getNameProduct()+" "+listLikeItem.get(0).getNewPrice()
+                +" "+listLikeItem.get(0).getOldPrice());
 
     }
-
-
-
 }
