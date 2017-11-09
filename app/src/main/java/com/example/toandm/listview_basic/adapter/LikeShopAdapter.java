@@ -26,7 +26,7 @@ public class LikeShopAdapter extends RecyclerView.Adapter<LikeShopAdapter.LikeVi
     //private LikeShopAdapter.LikeViewHolder holder;
 
 
-    public LikeShopAdapter(List<ShopItem> listLikeItem){
+    public LikeShopAdapter(Context context, List<ShopItem> listLikeItem){
         this.context = context;
         this.listLikeItem = listLikeItem;
     }

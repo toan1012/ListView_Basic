@@ -19,7 +19,7 @@
         <activity android:name=".controller.SecondActivity"></activity>
         <activity android:name=".controller.ShopActivity"></activity>
         <activity android:name=".controller.DetailActivity"></activity>
-        <activity android:name=".controller.ShopDataActivity"></activity>
+        <activity android:name=".controller.ShopMainActivity"></activity>
 
     </application>
 
