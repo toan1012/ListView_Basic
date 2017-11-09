@@ -10,15 +10,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.toandm.listview_basic.R;
+import com.example.toandm.listview_basic.data.Database;
 import com.example.toandm.listview_basic.fragments.FilterFragment;
 import com.example.toandm.listview_basic.fragments.HomeFragment;
 import com.example.toandm.listview_basic.fragments.LikeFragment;
+import com.example.toandm.listview_basic.model.ShopItem;
+
+import java.util.ArrayList;
 
 /**
  * Created by toandm on 11/6/17.
  */
 
-public class ShopFragmentActivity extends AppCompatActivity{
+public class ShopDataActivity extends AppCompatActivity implements HomeFragment.OnManagerData{
+
+    ArrayList<ShopItem> listLike = new ArrayList<ShopItem>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,5 +68,22 @@ public class ShopFragmentActivity extends AppCompatActivity{
 
         //Used to select an item programmatically
         //bottomNavigationView.getMenu().getItem(2).setChecked(true);
+    }
+
+
+    @Override
+    public void sendData(ShopItem item) {
+        LikeFragment likeFragment = new LikeFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Database.KEYNAME,item);
+        likeFragment.setArguments(bundle);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack so the user can navigate back
+
+        transaction.replace(R.id.frame_layout, likeFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
     }
 }

@@ -63,6 +63,6 @@ public class ShopActivity extends Activity {
         recyclerViewShop.hasFixedSize();
         recyclerViewShop.setLayoutManager(layoutManager);
         recyclerViewShop.setAdapter(homeShopAdapter);
-        homeShopAdapter.setOnItemClickedListener(onItemClickedListener);
+        //homeShopAdapter.setOnCartClickedListener();
     }
 }

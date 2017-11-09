@@ -1,13 +1,11 @@
 package com.example.toandm.listview_basic.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,6 @@ import android.widget.Toast;
 import com.example.toandm.listview_basic.R;
 import com.example.toandm.listview_basic.adapter.HomeShopAdapter;
 import com.example.toandm.listview_basic.data.Database;
-import com.example.toandm.listview_basic.impl.OnFragmentManager;
 import com.example.toandm.listview_basic.impl.OnItemClickedListener;
 import com.example.toandm.listview_basic.model.MovieItem;
 import com.example.toandm.listview_basic.model.ShopItem;
@@ -28,23 +25,26 @@ import java.util.List;
  * Created by toandm on 11/6/17.
  */
 
-public class HomeFragment extends android.support.v4.app.Fragment implements OnFragmentManager {
+public class HomeFragment extends android.support.v4.app.Fragment {
     private RecyclerView recyclerViewShop;
     private GridLayoutManager layoutManager;
     private HomeShopAdapter homeShopAdapter;
+    private OnManagerData onManagerData;
 
+
+
+    public interface OnManagerData{
+        void sendData(ShopItem item);
+    }
 
     private OnItemClickedListener onItemClickedListener = new OnItemClickedListener() {
         @Override
         public void onClicked(ShopItem item, int position) {
-//            Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-//            intent.putExtra("name",item.getNameProduct());
-//            startActivity(intent);
+            //onItemClickedListener.onClicked(item,position);
+            onManagerData.sendData(item);
             Toast.makeText(getActivity(), item.getNameProduct(),Toast.LENGTH_SHORT).show();
         }
     };
-    private OnFragmentManager listener;
-
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
         return fragment;
@@ -53,16 +53,14 @@ public class HomeFragment extends android.support.v4.app.Fragment implements OnF
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentManager ){
-            listener= (OnFragmentManager) context;
+        if (context instanceof OnManagerData){
+            onManagerData = (OnManagerData) context;
         } else {
             throw new RuntimeException(context.toString() + " must implement onViewSelected");
         }
 
     }
 
-
-    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,11 +89,7 @@ public class HomeFragment extends android.support.v4.app.Fragment implements OnF
         recyclerViewShop.setLayoutManager(layoutManager);
         recyclerViewShop.setAdapter(homeShopAdapter);
         homeShopAdapter.setOnItemClickedListener(onItemClickedListener);
+
         return view;
-    }
-
-    @Override
-    public void onDataSelected(MovieItem item) {
-
     }
 }

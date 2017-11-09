@@ -20,4 +20,9 @@ public class Database {
     public static final String NEWPRICE[] = {"4.59$","5,2$","6.0$","2.5$","7.2$","3.1$"};
     public static final String NAMEFILM[] = {"Chien tranh Trieu Tien","Buon","Vui","Chao cuoc song"};
 
+    public static final String KEYNAME = "NAME_PRODUCT";
+    public static final String KEYOLDPRICE = "OLD_PRICE_PRODUCT";
+    public static final String KEYNEWPRICE = "NEW_PRICE_PRODUCT";
+    public static final String KEYIMG = "IMG_PATH";
+
 }
